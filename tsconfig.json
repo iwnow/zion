@@ -15,7 +15,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@zion/core": ["libs/core/src/index.ts"],
+      "@zion/core.auth": ["libs/core.auth/src/index.ts"],
+      "@zion/core.cookie": ["libs/core.cookie/src/index.ts"],
+      "@zion/core.http": ["libs/core.http/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

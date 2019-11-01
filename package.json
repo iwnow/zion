@@ -6,6 +6,8 @@
     "nx": "nx",
     "start": "nx serve",
     "build": "nx build",
+    "build:libs:umd": "rollup -c",
+    "serve:lib": "rollup -cw",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
@@ -22,18 +24,37 @@
     "format:check": "nx format:check",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "gen:lib:ts": "nx g @nrwl/node:lib"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "@abraham/reflection": "^0.7.0",
+    "injection-js": "^2.2.2",
+    "rxjs": "^6.5.3"
+  },
   "devDependencies": {
+    "@nrwl/jest": "8.7.0",
+    "@nrwl/node": "^8.7.0",
     "@nrwl/workspace": "8.7.0",
+    "@types/jest": "24.0.9",
     "@types/node": "~8.9.4",
     "dotenv": "6.2.0",
+    "eslint": "6.1.0",
+    "jest": "24.1.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "1.18.2",
+    "rollup": "^1.26.2",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-fill-html": "^1.1.0",
+    "rollup-plugin-livereload": "^1.0.4",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-serve": "^1.0.1",
+    "rollup-plugin-terser": "^5.1.2",
+    "rollup-plugin-typescript2": "^0.24.3",
+    "ts-jest": "24.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "eslint": "6.1.0",
-    "typescript": "~3.4.5",
-    "prettier": "1.18.2"
+    "typescript": "~3.4.5"
   }
 }
