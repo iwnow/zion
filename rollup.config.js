@@ -29,7 +29,7 @@ export default [
             !production && livereload(),
             !production && serve('dist'),
             !production && html({
-                template: path.resolve(__dirname, 'tmpl-libs.index.html'),
+                template: path.resolve(__dirname, './libs/libs.html'),
                 filename: 'index.html'
               }),
             // minify if prod
