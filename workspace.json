@@ -100,10 +100,115 @@
           }
         }
       }
+    },
+    "ccui": {
+      "root": "apps/ccui",
+      "sourceRoot": "apps/ccui/src",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "options": {
+            "outputPath": "dist/apps/ccui",
+            "index": "apps/ccui/src/index.html",
+            "main": "apps/ccui/src/main.tsx",
+            "polyfills": "apps/ccui/src/polyfills.ts",
+            "tsConfig": "apps/ccui/tsconfig.app.json",
+            "assets": ["apps/ccui/src/favicon.ico", "apps/ccui/src/assets"],
+            "styles": ["apps/ccui/src/styles.scss"],
+            "scripts": [],
+            "webpackConfig": "apps/ccui/webpack-build"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ccui/src/environments/environment.ts",
+                  "with": "apps/ccui/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "ccui:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "ccui:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/ccui/.eslintrc",
+            "tsConfig": [
+              "apps/ccui/tsconfig.app.json",
+              "apps/ccui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/ccui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/ccui/jest.config.js",
+            "tsConfig": "apps/ccui/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "ccui-e2e": {
+      "root": "apps/ccui-e2e",
+      "sourceRoot": "apps/ccui-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ccui-e2e/cypress.json",
+            "tsConfig": "apps/ccui-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ccui:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ccui:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/ccui-e2e/.eslintrc",
+            "tsConfig": ["apps/ccui-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ccui-e2e/**"]
+          }
+        }
+      }
     }
   },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
+    "defaultCollection": "@nrwl/react"
   },
   "schematics": {
     "@nrwl/workspace": {
@@ -118,9 +223,15 @@
     },
     "@nrwl/react": {
       "application": {
-        "linter": "eslint"
+        "style": "scss",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "scss"
       },
       "library": {
+        "style": "scss",
         "linter": "eslint"
       }
     },
@@ -149,5 +260,6 @@
         "linter": "eslint"
       }
     }
-  }
+  },
+  "defaultProject": "ccui"
 }

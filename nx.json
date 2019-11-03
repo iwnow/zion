@@ -19,6 +19,12 @@
     },
     "core.http": {
       "tags": []
+    },
+    "ccui": {
+      "tags": []
+    },
+    "ccui-e2e": {
+      "tags": []
     }
   }
 }
